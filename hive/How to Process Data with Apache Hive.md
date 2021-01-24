@@ -304,6 +304,7 @@ each driver.
 
 - [Apache Hive](https://hive.apache.org/)
 - [Hive
-  Tutorials](https://www.tutorialspoint.com/hive/index.htm)
+  Tutorial](https://www.tutorialspoint.com/hive/index.htm)
+- [Another Hive Tutorial](https://cwiki.apache.org/confluence/display/Hive/Tutorial)
 - [Hive Language
   Manual](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
