@@ -27,6 +27,7 @@ and filter that data.
 - [Create temp_timesheet and timesheet tables similarly](#create-temp_timesheet-and-timesheet-tables-similarly)
 - [Create Query to Group The Data (driverId, hours_logged, miles_logged)](#create-query-to-group-the-data-driverid-hours_logged-miles_logged)
 - [Create Query to Join The Data (driverId, name, hours_logged, miles_logged)](#create-query-to-join-the-data-driverid-name-hours_logged-miles_logged)
+- [Other SQL Clients](#other-sql-clients)
 - [Summary](#summary)
 - [Further Reading](#further-reading)
 
@@ -285,6 +286,22 @@ So now we have our results. As described earlier we solved this problem
 using Hive step by step. At any time we were free to look around at the
 data, decide we needed to do another task and come back. At all times
 the data is live and accessible to us.
+
+## [Other SQL Clients](#other-sql-clients)
+
+You can also access Hive tables through other SQL clients
+
+### Presto:
+
+![presto](images/013_presto.png)
+
+### DBeaver:
+
+![beeline](images/014_dbeaver.png)
+
+### Beeline:
+
+![beeline](images/015_beeline.png)
 
 ## [Summary](#summary)
 
