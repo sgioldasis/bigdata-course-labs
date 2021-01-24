@@ -301,7 +301,7 @@ You can also access Hive tables through other SQL clients
 
 ### Beeline:
 
-![beeline](images/015_beeline.png)
+![beeline](images/016_beeline.png)
 
 ## [Summary](#summary)
 
