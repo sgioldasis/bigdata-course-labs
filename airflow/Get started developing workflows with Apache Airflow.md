@@ -1,3 +1,5 @@
+![airflow-logo](images/000_AirflowLogo.png)
+
 # Get started developing workflows with Apache Airflow
 
 [Apache
