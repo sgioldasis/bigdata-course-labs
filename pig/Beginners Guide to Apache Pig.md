@@ -1,3 +1,5 @@
+![pig-logo](images/000_pig_logo.png)
+
 # Beginners Guide to Apache Pig
 
 ## [Introduction](#introduction)
