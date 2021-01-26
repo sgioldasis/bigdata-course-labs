@@ -1,3 +1,5 @@
+![hive-logo](images/000_hive_logo2.png)
+
 # How to Process Data with Apache Hive
 
 ## [Introduction](#introduction)
