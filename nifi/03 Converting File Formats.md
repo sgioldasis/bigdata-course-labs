@@ -1,3 +1,5 @@
+![nifi-logo](images/000_nifi_logo.png)
+
 # Converting File Formats
 
 As part of data ingestion process, we might have to convert file format with out performing any transformations over data. In this module we will explore options in NiFi about File Format conversion.
@@ -12,6 +14,8 @@ As part of data ingestion process, we might have to convert file format with out
 - Overview of Schema Registry
 - Passing Avro Schema
 - CSV to Parquet with Schema
+- Validate
+- Accessing through Hive or Presto
 
 ## Pre-requisites
 
@@ -251,7 +255,10 @@ Parquet is one of the industry standard file format that is used in Data Lakes o
     - We will have 2 ConvertRecord Processors to deal with 2 types of Null values.
   - UpdateAttribute - to set the filename with appropriate file name and right extension.
   - PutHDFS - to place the files in HDFS.
-    Let us validated by reading the data using Pyspark.
+
+## Validate
+
+Let us validate by reading the data using Pyspark.
 
 ```
 trips = spark. \
@@ -271,4 +278,51 @@ val trips = spark.
 trips.printSchema
 trips.count
 trips.show
+```
+
+## Accessing through Hive or Presto
+
+First you need to start Hive and Presto. On your terminal type:
+
+```bash
+start-hive.sh
+```
+
+Get into any Hive client. Let's create a database and table for trips data.
+
+```sql
+CREATE DATABASE IF NOT EXISTS training_citibike;
+CREATE EXTERNAL TABLE IF NOT EXISTS training_citibike.trips (
+    tripduration INT,
+    starttime STRING,
+    stoptime STRING,
+    start_station_id STRING,
+    start_station_name STRING,
+    start_station_latitude FLOAT,
+    start_station_longitude FLOAT,
+    end_station_id STRING,
+    end_station_name STRING,
+    end_station_latitude FLOAT,
+    end_station_longitude FLOAT,
+    bikeid INT,
+    usertype STRING,
+    birth_year INT,
+    gender INT
+)
+STORED AS PARQUET
+LOCATION '/user/savas/parquet/citibike/trips';
+```
+
+## Executing Commands
+
+Now that the database and table is created you can execute SQL commands against your table. From your Hive or Presto client execute the following to see the first 10 rows of data:
+
+```sql
+SELECT * FROM training_citibike.trips LIMIT 10;
+```
+
+Also execute the following to get the count:
+
+```sql
+SELECT count(1) FROM hive.training_citibike.trips;
 ```

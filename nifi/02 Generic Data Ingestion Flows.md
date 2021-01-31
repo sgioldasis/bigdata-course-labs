@@ -1,3 +1,5 @@
+![nifi-logo](images/000_nifi_logo.png)
+
 # Generic Data Ingestion Flows
 
 Let us understand how to build Generic Data Ingestion flows in this session.

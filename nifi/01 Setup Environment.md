@@ -1,3 +1,5 @@
+![nifi-logo](images/000_nifi_logo.png)
+
 # Setup Environment
 
 As part of this session we will see how to setup environment to practice NiFi in a single node cluster with Hadoop and Spark.
@@ -40,9 +42,20 @@ We can manage NiFi using the following shell scripts:
 
 ## Running a Simple Pipeline
 
-Let us run a simple pipeline as well to ensure that NiFi is working as expected.
+Let us run a simple pipeline as well to ensure that NiFi is working as expected. First, some preparation:
 
-- Download this [NiFi Simple Pipeline](xml/Data_Ingestion_using_NiFi_-_Simple_Pipeline_-_Demo.xml).
+```bash
+# Start HDFS
+start-dfs.sh
+
+# Remove retail_db folder from HDFS (in case it exists from previous runs)
+hdfs dfs -rm -R -skipTrash /user/savas/retail_db
+
+# Copy the data into /tmp folder
+cp -r /home/savas/data/retail_db/ /tmp
+```
+
+- Download this [NiFi Simple Pipeline](xml/Simple_Pipeline_Demo.xml).
 - Upload it using NiFi UI
 - Review processors and the locations that are used against the setup.
 - Run and validate to see if the data is flowing as expected.
