@@ -18,7 +18,15 @@ To be proficient in Spark, one must have **three fundamental skills**:
 ## The Dataset
 
 Let’s describe briefly the dataset that we are going to use: **it consists of three tables coming from the database of a shop, with products, sales and sellers.** Data is available in Parquet files that
-you are already downloaded in your VM as a zip file `/home/savas/data/coursework/coursework_data.zip`
+you are already downloaded in your VM as a zip file `/home/savas/data/coursework/coursework_data.zip`. You first need to unzip the dataset. Once you do that, you will get the following three folders containing `snappy` compressed `parquet` files:
+
+```text
+products_parquet/
+sales_parquet/
+sellers_parquet/
+```
+
+> Note: Unzipping will take some time. Don't worry if your VM may appear to be stuck for a while.
 
 The following diagram shows how the tables can be connected:
 
@@ -59,7 +67,7 @@ The goal is to **implement a working code that solves the proposed problems**.
 
 Tip: The dataset is built to allow working on a single machine: **when writing the code, imagine what would happen with a dataset 100 times bigger.**
 
-There are four excercises and two warm-up questions. You are going to implement the exercises in Python using PySpark. You need to submit 6 files:
+There are four excercises and two warm-up questions. You are going to implement the warm-up questions and the exercises in Python using PySpark. You need to submit 6 files:
 
 ```
 warmup_1.py
@@ -69,6 +77,8 @@ exercise_2.py
 exercise_3.py
 exercise_4.py
 ```
+
+The above files should be able to be executed by `spark-submit`. For example, you should be able to run `spark-submit warmup_1.py` in your terminal and get some output.
 
 ## Warm-up \#1
 
