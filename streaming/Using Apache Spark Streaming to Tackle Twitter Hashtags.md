@@ -443,7 +443,7 @@ which can serve different industries, like news or marketing.
 > track specific hashtags and their tweets in order to know what people
 > are saying about specific topics or events in the world.
 
-### Marketing example\*\*
+### Marketing example
 
 > We can collect the stream of tweets and, by doing sentiment analysis,
 > categorize them and determine people’s interests in order to target
