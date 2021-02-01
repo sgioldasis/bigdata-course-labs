@@ -35,7 +35,7 @@ And now you’re ready for the next step.
 
 ## Building the Twitter HTTP Client
 
-In this step, we will to build a simple client that will get
+In this step, we will build a simple client that will get
 the tweets from Twitter API using Python and passes them to the Spark
 Streaming instance. It should be easy to follow for anyone with a little knowledge of Python.
 
@@ -354,7 +354,7 @@ query = wordCounts \
 query.awaitTermination()
 ```
 
-## Taking it further
+## In-class Assignment 1 (C2)
 
 In our implementation above, there is a major problem. Can you spot it?
 
@@ -362,7 +362,7 @@ The problem is that the `producer` (the Python application fetching the tweets) 
 
 So, how can we `de-couple` these two? We need some layer in-between so that the producer can run independently at its own speed and write the tweets to the intermediate layer. Then the consumer can run independently at its own speed, reading the tweets from the intermediate layer. This is the role of Kafka. Let's try using Kafka.
 
-We first need to refactor our `producer` application in order to write to Kafka instead of a network socket. Here is the new code (for comparizon we also left the old code commented out):
+We first need to refactor our `producer` application in order to write to Kafka instead of a network socket. Here is the start of the new code:
 
 ```py
 import time
@@ -372,58 +372,11 @@ import requests
 import requests_oauthlib
 import json
 from confluent_kafka import Producer
-
-# Replace the values below with yours
-ACCESS_TOKEN = 'YOUR_ACCESS_TOKEN'
-ACCESS_SECRET = 'YOUR_ACCESS_SECRET'
-CONSUMER_KEY = 'YOUR_CONSUMER_KEY'
-CONSUMER_SECRET = 'YOUR_CONSUMER_SECRET'
-my_auth = requests_oauthlib.OAuth1(CONSUMER_KEY, CONSUMER_SECRET,ACCESS_TOKEN, ACCESS_SECRET)
-
-def get_tweets():
-    url = 'https://stream.twitter.com/1.1/statuses/filter.json'
-    query_data = [('language', 'en'), ('locations', '-130,-20,100,50'),('track','iphone')]
-    query_url = url + '?' + '&'.join([str(t[0]) + '=' + str(t[1]) for t in query_data])
-    response = requests.get(query_url, auth=my_auth, stream=True)
-    print(query_url, response)
-    return response
-
-def acked(err, msg):
-    if err is not None:
-        print("Failed to deliver message: {0}: {1}"
-              .format(msg.value(), err.str()))
-    else:
-        print("Message produced: {0}".format(msg.value()))
-
-def send_tweets_to_spark(http_resp, p):
-    for line in http_resp.iter_lines():
-        time.sleep(.5)
-        full_tweet = json.loads(line)
-        tweet_text = full_tweet['text']
-        print("Tweet Text: " + tweet_text)
-        print ("------------------------------------------")
-        msg = tweet_text + '\n'
-        # tcp_connection.send(msg.encode())
-        p.produce('tweets', msg, callback=acked)
-
-
-# TCP_IP = 'localhost'
-# TCP_PORT = 50002
-# conn = None
-# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# s.bind((TCP_IP, TCP_PORT))
-# s.listen(1)
-# print("Waiting for TCP connection...")
-# conn, addr = s.accept()
-# s.close()
-
-p = Producer({'bootstrap.servers': 'localhost:9092'})
-print("Connected... Starting getting tweets.")
-resp = get_tweets()
-send_tweets_to_spark(resp, p)
 ```
 
-Next, we need to refactor our `consumer` (structured streaming) application in order to read from Kafka instead of a network socket. Here is the new code:
+> Exercise 1: Try to complete the above code by modifying the original implementation as needed.
+
+Next, we need to refactor our `consumer` (structured streaming) application in order to read from Kafka instead of a network socket. Here is the start of the new code:
 
 ```py
 from pyspark.sql import SparkSession
@@ -436,43 +389,9 @@ spark = SparkSession \
     .master("local[2]") \
     .appName("StructuredNetworkWordCount") \
     .getOrCreate()
-
-# Create DataFrame representing the stream of input lines from connection to localhost:50003
-df = spark \
-    .readStream \
-    .format("kafka") \
-    .option("kafka.bootstrap.servers", "localhost:9092") \
-    .option("subscribe", "tweets") \
-    .load()
-
-lines = df \
-    .selectExpr("CAST(value AS STRING)").alias("value") \
-    .withColumn('value', regexp_replace('value', '\n', ''))
-
-# Split the lines into words
-words = lines.select(
-   explode(
-       split(lines.value, " ")
-   ).alias("word")
-)
-
-# Generate running word count for hashtags
-wordCounts = words \
-    .filter("word like '%#%'") \
-    .groupBy("word") \
-    .count() \
-    .orderBy('count', ascending=False)
-
-# Start running the query that prints the running counts to the console
-query = wordCounts \
-    .writeStream \
-    .outputMode("complete") \
-    .option("checkpointLocation", "file:///tmp/checkpoint_structured4") \
-    .format("console") \
-    .start()
-
-query.awaitTermination()
 ```
+
+> Exercise 2: Try to complete the above code by modifying the original implementation as needed.
 
 In order to run our Spark application, we need to slightly change the run script in order to include the `spark-sql-kafka` package. Here is the new script:
 
@@ -486,7 +405,13 @@ rm -rf /tmp/checkpoint*
 spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.1 kafka_spark_structured.py
 ```
 
-Now, before we start any of our applications, we need to make sure that Kafka is running. After that, we can start/stop any of our two applications independently.
+Now, before we start any of our applications, we need to make sure that Kafka is running.
+
+```bash
+start-kafka.sh
+```
+
+After that, we can start/stop any of our two applications independently.
 
 ## Apache Streaming Real Life Use Cases
 
