@@ -39,6 +39,8 @@ In this step, we will build a simple client that will get
 the tweets from Twitter API using Python and passes them to the Spark
 Streaming instance. It should be easy to follow for anyone with a little knowledge of Python.
 
+> Note: You can find all the code in the `/home/savas/twitter` folder on your VM.
+
 First, let’s create a file called `twitter_app.py` and then we’ll add
 the code in it together as below.
 
@@ -296,13 +298,25 @@ set -e
 
 rm -rf /tmp/checkpoint*
 
+spark-submit spark_streaming.py
+```
+
+The last one is called `run-spark-structured.sh`:
+
+```bash
+#!/bin/bash
+
+set -e
+
+rm -rf /tmp/checkpoint*
+
 spark-submit spark_structured.py
 ```
 
 Let’s run the applications in the order below:
 
 1. Twitter App (on one terminal) : `./run-app.sh`
-2. Spark App (on a second terminal) : `./run-spark-streaming.sh`
+2. Spark App (on a second terminal) : `./run-spark-streaming.sh` or `./run-spark-structured.sh`
 
 Now, you can see tweet texts being output on your first terminal and hashtag counts being printed on your second terminal. To terminate both applications you type `Ctrl+C` on your second terminal (the one running the Spark application).
 
