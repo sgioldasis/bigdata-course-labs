@@ -70,7 +70,7 @@ Navigate again to the [VirtualBox downloads page](https://www.virtualbox.org/wik
 
 Click on 'All Supported Platforms' under 'Oracle VM VirtualBox Extension Pack'
 
-![Extension Pack Download](13_Extension_Pack_Download.png)
+![Extension Pack Download](images/13_Extension_Pack_Download.png)
 
 Select 'Open With [VirtualBox Manager (default)]' and press 'OK'
 
@@ -90,7 +90,7 @@ The installation will complete in seconds. Press 'OK'
 
 ### **Great Job! You have successfully installed Oracle VirtualBox!**
 
-Next you will set up the provided Virtual Machine that you download from ![VM Location](https://www.test.com)on VirtualBox...
+Next you will set up the provided Virtual Machine. You first have to download the Virtual Hard Disk file from [here](https://athens-college.s3.us-east-2.amazonaws.com/Peppermint.vhd). The file is large (approx 43.3 GB) so you need to make sure you have the corresponding free space on your drive. It will take some time to download depending on the speed of your internet connection. You can name the file as you like but the instructions below assume you save the file as `Peppermint.vhd`
 
 ## **Step 4: Virtual Machine Set Up**
 
@@ -111,7 +111,7 @@ Enter the configuration details of the new VM
 > - A descriptive name
 > - Operating System of the VM on the **'Type'** drop down list (Linux in this case)
 > - The version of the operating system (_Ubuntu 64_)
-> - The amount of memory that will be allocated to the VM
+> - The amount of memory that will be allocated to the VM (try to give as much as you can)
 
 ![VM Configuration](images/19_New_VM_02.png)
 
