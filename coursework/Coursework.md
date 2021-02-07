@@ -17,8 +17,16 @@ To be proficient in Spark, one must have **three fundamental skills**:
 
 ## The Dataset
 
-Let’s describe briefly the dataset that we are going to use: **it consists of three tables coming from the database of a shop, with products, sales and sellers.** Data is available in Parquet files that
-you are already downloaded in your VM as a zip file `/home/savas/data/coursework/coursework_data.zip`. You first need to unzip the dataset. Once you do that, you will get the following three folders containing `snappy` compressed `parquet` files:
+Let’s describe briefly the dataset that we are going to use: **it consists of three tables coming from the database of a shop, with products, sales and sellers.**
+
+Data is available in Parquet files that you need to download. In your terminal type the following:
+
+```
+cd /home/savas/data/coursework/
+wget https://athens-college.s3.us-east-2.amazonaws.com/coursework_data.zip
+```
+
+Now the data are downloaded in your VM as a zip file `/home/savas/data/coursework/coursework_data.zip`. Next you need to unzip the dataset using the command `unzip coursework_data.zip`. Once you do that, you will get the following three folders containing `snappy` compressed `parquet` files:
 
 ```text
 products_parquet/
@@ -26,7 +34,7 @@ sales_parquet/
 sellers_parquet/
 ```
 
-> Note: Unzipping will take some time. Don't worry if your VM may appear to be stuck for a while.
+> Note: Unzipping will take some time. Don't worry if your VM appears to be stuck for a while.
 
 The following diagram shows how the tables can be connected:
 
