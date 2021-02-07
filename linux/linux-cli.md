@@ -13,6 +13,7 @@ A terminal window opens. This is where we will type the CLI commands
 Let's examine some basic commands...
 
 - ## **man**
+
   Display the manual pages with documentation about commands, system calls and other system functions
 
 > You can run a sequence of commands using the special character '|' (pipe)
