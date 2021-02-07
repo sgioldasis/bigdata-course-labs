@@ -26,7 +26,7 @@ cd /home/savas/data/coursework/
 wget https://athens-college.s3.us-east-2.amazonaws.com/coursework_data.zip
 ```
 
-Now the data are downloaded in your VM as a zip file `/home/savas/data/coursework/coursework_data.zip`. Next you need to unzip the dataset using the command `unzip coursework_data.zip`. Once you do that, you will get the following three folders containing `snappy` compressed `parquet` files:
+Now the data is downloaded in your VM as a zip file `/home/savas/data/coursework/coursework_data.zip`. Next you need to unzip the dataset using the command `unzip coursework_data.zip`. Once you do that, you will get the following three folders containing `snappy` compressed `parquet` files:
 
 ```text
 products_parquet/
