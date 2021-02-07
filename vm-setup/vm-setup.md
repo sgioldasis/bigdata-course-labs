@@ -111,7 +111,7 @@ Enter the configuration details of the new VM
 > - A descriptive name
 > - Operating System of the VM on the **'Type'** drop down list (Linux in this case)
 > - The version of the operating system (_Ubuntu 64_)
-> - The amount of memory that will be allocated to the VM (try to give as much as you can)
+> - The amount of memory that will be allocated to the VM (try to allocate as much as you can)
 
 ![VM Configuration](images/19_New_VM_02.png)
 
@@ -123,7 +123,7 @@ Press the 'Add' button on the popup screen
 
 ![Add VM](images/19_New_VM_04.png)
 
-and vavigate to the location that the **.vhd image** was downloaded and press 'Open'
+and navigate to the location that the **.vhd image** was downloaded and press 'Open'
 
 ![Select VM](images/19_New_VM_05.png)
 
