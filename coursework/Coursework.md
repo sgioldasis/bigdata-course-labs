@@ -19,7 +19,7 @@ To be proficient in Spark, one must have **three fundamental skills**:
 
 Let’s describe briefly the dataset that we are going to use: **it consists of three tables coming from the database of a shop, with products, sales and sellers.**
 
-Data is available in Parquet files that you need to download. In your terminal type the following:
+Data is available as a `zip` file that you can download from [here](https://athens-college.s3.us-east-2.amazonaws.com/coursework_data.zip) and save in your `/home/savas/data/coursework/` folder. Alternatively, you can download the zip file by typing the following in your terminal:
 
 ```
 cd /home/savas/data/coursework/
