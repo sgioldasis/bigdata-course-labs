@@ -88,6 +88,8 @@ exercise_4.py
 
 The above files should be able to be executed by `spark-submit`. For example, you should be able to run `spark-submit warmup_1.py` in your terminal and get some output.
 
+You also need to submit one more file `report.doc` in Microsoft Word format. This will be the presentation of your work. You can structure the file as you like. The purpose of this is to describe your solution, your methodology, challenges you faced and how you solved them etc. Even if you don't solve an exercise, you will get points by describing what was the problem and your thoughts about a possible solution.
+
 ## Warm-up \#1
 
 ```py
