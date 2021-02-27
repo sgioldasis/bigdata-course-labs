@@ -65,6 +65,19 @@ Then run the commands for each task described below in your terminal.
     hdfs dfs -setrep 1 /user/savas/bank.csv
     ```
 
+Now it's time for you to try and complete the following tasks:
+
+- In HDFS create a new folder `test` inside the existing `/user` folder
+- In HDFS list the contents of the new folder `/user/test` and make sure it is empty
+- In HDFS list the contents of the existing folder `/user` and make sure it contains your `test` folder
+- Copy the file `/user/savas/bank.csv` from HDFS to your local filesystem. The local filename should also be `bank.csv`
+- List your local filesystem and make sure the file `bank.csv` is there
+- Copy the file `bank.csv` from your local filesystem to the HDFS folder `/user/test`. The HDFS filename should also be `bank.csv`
+- In HDFS list the contents of the folder `/user/test` and make sure it contains the file `bank.csv`
+- Display the all contents of the file `/user/test/bank.csv` stored in HDFS
+- Display only the last few lines of the file `/user/test/bank.csv` stored in HDFS
+
+
 Useful links: 
 - https://www.tutorialspoint.com/hadoop/hadoop_command_reference.htm
 - https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html#stat
