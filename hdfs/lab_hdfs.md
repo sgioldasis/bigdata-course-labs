@@ -1,4 +1,10 @@
 # HDFS Lab
+Before you run the lab make sure HDFS is running. To do that open a terminal and run the following:
+```
+start-dfs.sh
+```
+
+Then run the commands for each task described below in your terminal.
 
 - Find file bank.csv in local filesystem
     
