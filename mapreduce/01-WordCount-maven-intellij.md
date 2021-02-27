@@ -2,6 +2,18 @@
 
 In this tutorial we will understand a way you can write and test your Hadoop Program with Maven on IntelliJ without configuring Hadoop environment on your own machine.
 
+Before you run the lab make sure HDFS and YARN are running. To do that open a terminal and run the following:
+```
+start-dfs.sh
+start-yarn.sh 
+```
+
+Optional - You can also start the yarn timeline server by typing the following command in your terminal:
+```
+yarn timelineserver
+```
+The yarn timeline server will run in the foreground so just leave the terminal open while proceeding with the rest of the tutorial.
+
 ## CREATING A NEW PROJECT
 
 Start IntelliJ, click `New Project` and choose `Maven` then click `Next`
