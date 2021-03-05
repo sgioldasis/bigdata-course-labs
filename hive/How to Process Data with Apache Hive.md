@@ -69,9 +69,10 @@ logged driven by a truck driver for an year. Once we have the sum of
 hours and miles logged, we will extend the script to translate a driver
 id field into the name of the drivers by joining two different tables.
 
-## [Download The Data](#download-the-data)
+## [Download the Data](#download-the-data)
 
-To download the driver data follow the instructions in the Pig tutorial.
+Download the driver data file [from
+here](https://www.cloudera.com/content/dam/www/marketing/tutorials/beginners-guide-to-apache-pig/assets/driver_data.zip).
 Once you have the file you will need to unzip the file into a directory.
 You should now have three csv files in your local folder.
 We will be uploading two csv files - `drivers.csv` and `timesheet.csv` to HDFS.
