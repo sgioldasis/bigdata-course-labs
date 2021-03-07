@@ -19,12 +19,7 @@ To be proficient in Spark, one must have **three fundamental skills**:
 
 Let’s describe briefly the dataset that we are going to use: **it consists of three tables coming from the database of a shop, with products, sales and sellers.**
 
-Data is available as a `zip` file that you can download from [here](https://athens-college.s3.us-east-2.amazonaws.com/coursework_data.zip) and save in your `/home/savas/data/coursework/` folder. Alternatively, you can download the zip file by typing the following in your terminal:
-
-```
-cd /home/savas/data/coursework/
-wget https://athens-college.s3.us-east-2.amazonaws.com/coursework_data.zip
-```
+Data is available as a `zip` file that you can download from [here](https://drive.google.com/file/d/1MZ2Zb1c3KQYcmWZoOAO-zkFTzHlx5QzJ/view?usp=sharing) and save in your `/home/savas/data/coursework/` folder.
 
 Now the data is downloaded in your VM as a zip file `/home/savas/data/coursework/coursework_data.zip`. Next you need to unzip the dataset using the command `unzip coursework_data.zip`. Once you do that, you will get the following three folders containing `snappy` compressed `parquet` files:
 
