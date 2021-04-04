@@ -96,7 +96,7 @@ spark = SparkSession.builder \
     .master("local") \
     .config("spark.sql.autoBroadcastJoinThreshold", -1) \
     .config("spark.executor.memory", "500mb") \
-    .appName("Exercise1") \
+    .appName("Warmup1") \
     .getOrCreate()
 ```
 
@@ -110,7 +110,7 @@ spark = SparkSession.builder \
     .master("local") \
     .config("spark.sql.autoBroadcastJoinThreshold", -1) \
     .config("spark.executor.memory", "500mb") \
-    .appName("Exercise1") \
+    .appName("Warmup2") \
     .getOrCreate()
 ```
 
@@ -149,7 +149,7 @@ spark = SparkSession.builder \
     .master("local") \
     .config("spark.sql.autoBroadcastJoinThreshold", -1) \
     .config("spark.executor.memory", "500mb") \
-    .appName("Exercise1") \
+    .appName("Exercise2") \
     .getOrCreate()
 ```
 
@@ -164,7 +164,7 @@ spark = SparkSession.builder \
     .master("local") \
     .config("spark.sql.autoBroadcastJoinThreshold", -1) \
     .config("spark.executor.memory", "3gb") \
-    .appName("Exercise1") \
+    .appName("Exercise3") \
     .getOrCreate()
 ```
 
@@ -181,6 +181,6 @@ spark = SparkSession.builder \
     .master("local") \
     .config("spark.sql.autoBroadcastJoinThreshold", -1) \
     .config("spark.executor.memory", "3gb") \
-    .appName("Exercise1") \
+    .appName("Exercise4") \
     .getOrCreate()
 ```
