@@ -77,5 +77,14 @@ Now it's time for you to try and complete the following tasks:
 cd ~/projects/docker-hadoop-cluster-2
 docker-compose up -d
 ```
+- Copy the folder `data` from cluster-1 to cluster-2
+```
+hadoop distcp hdfs://localhost:9000/data hdfs://localhost:9001/
+```
+- Remove the folder `data` from cluster-2
+```
+hadoop fs -rm -r hdfs://localhost:9001/data
+```
 - Run the above examples in the second HDFS cluster using the same HDFS client
+
 
