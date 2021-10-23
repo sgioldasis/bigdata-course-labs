@@ -1,7 +1,7 @@
 # HDFS Docker Lab
 Before you run the lab make sure HDFS is running. To do that open a terminal and run the following:
 ```
-cd ~/projects/bigdata-course-infra/hdfs/docker-hadoop-cluster
+cd ~/projects/bigdata-docker-infra/hdfs/docker-hadoop-cluster
 docker-compose up -d
 ```
 
@@ -85,7 +85,7 @@ Now it's time for you to try and complete the following tasks:
 In order to perform the following you first have to setup and configure a local hadoop client on your machine. Instructions on how to do that are beyond the scope of this document. However, if you are in a Linux machine and you already have Java installed, you can use the following:
 
 ```
-cp -r ~/projects/bigdata-course-infra/hdfs/hadoop-3.2.0 /tmp
+cp -r ~/projects/bigdata-docker-infra/hdfs/hadoop-3.2.0 /tmp
 export HADOOP_OPTS=-Djava.library.path=/tmp/hadoop-3.2.0/lib/native
 export HADOOP_INSTALL=/tmp/projects/hadoop-3.2.0
 export HADOOP_MAPRED_HOME=/tmp/hadoop-3.2.0
@@ -100,7 +100,7 @@ export PATH=/tmp/hadoop-3.2.0/sbin:/tmp/hadoop-3.2.0/bin:$PATH
 
 - Start a second HDFS cluster using the following commands:
 ```
-cd ~/projects/bigdata-course-infra/hdfs/docker-hadoop-cluster-2
+cd ~/projects/bigdata-docker-infra/hdfs/docker-hadoop-cluster-2
 docker-compose up -d
 ```
 
