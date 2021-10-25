@@ -1,5 +1,6 @@
 # HDFS Docker Lab
 Before you run the lab make sure HDFS is running. To do that open a terminal and run the following:
+
 ```
 cd ~/projects/bigdata-docker-infra/hdfs/docker-hadoop-cluster
 docker-compose up -d
