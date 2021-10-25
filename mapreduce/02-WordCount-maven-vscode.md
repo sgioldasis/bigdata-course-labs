@@ -1,11 +1,29 @@
 # Hadoop program with Maven on VS Code
 
-In this tutorial we will understand a way you can write and test your Hadoop Program with Maven on VS Code without configuring anything but Docker on your own machine.
+In this tutorial we will understand a way you can write and test your Hadoop Program with Maven on VS Code without installing anything (but git and docker) on your own machine.
 
-Before you run the lab make sure HDFS is running. To do that open a terminal and run the following:
+Before you run the lab make sure you have cloned the following Git repositories. 
+
+- [Bigdata Docker Infrastructure](https://github.com/sgioldasis/bigdata-docker-infra)
+- [Bigdata Course Labs](https://github.com/sgioldasis/bigdata-course-labs)
+
+If you don't have git you can click the above links, click on the green `Code` button and choose `Download ZIP`. You then need to unzip into the following folders:
+
+- /tmp/bigdata-docker-infra
+- /tmp/bigdata-course-labs
+
+
+Alternatively, ff you have `git` installed you can just open a terminal and run the following:
+```
+cd /tmp
+git clone https://github.com/sgioldasis/bigdata-docker-infra.git
+git clone https://github.com/sgioldasis/bigdata-course-labs.git
+```
+
+Now it's time to start the Hadoop cluster. To do that run the following in your terminal:
 
 ```
-cd ~/projects/bigdata-docker-infra/hdfs/docker-hadoop-cluster
+cd /tmp/bigdata-docker-infra/hdfs/docker-hadoop-cluster
 docker-compose up -d
 ```
 
@@ -14,7 +32,7 @@ docker-compose up -d
 To open the WordCount project in VS Code you need to type the following:
 
 ```
-cd ~/projects/bigdata-course-labs/mapreduce/wordcount/
+cd /tmp/bigdata-course-labs/mapreduce/wordcount/
 code .
 ```
 
@@ -232,7 +250,7 @@ At this point we are done with development, build and packaging so we can close 
 Now we want to run our program on the Hadoop cluster. First thing we need to do is copy our application's JAR file into the `master` server of the cluster:
 
 ```bash
-cd ~/projects/bigdata-course-labs/mapreduce/wordcount/
+cd /tmp/bigdata-course-labs/mapreduce/wordcount/
 
 docker cp target/wordcount-1.0.jar master:/tmp
 ```
@@ -283,7 +301,7 @@ exit
 Before you run away make sure you cleanup. To do that open a terminal and run the following:
 
 ```
-cd ~/projects/bigdata-docker-infra/hdfs/docker-hadoop-cluster
+cd /tmp/bigdata-docker-infra/hdfs/docker-hadoop-cluster
 docker-compose down
 docker rm $(docker ps -aq)
 docker ps -a
