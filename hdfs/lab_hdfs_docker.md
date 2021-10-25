@@ -86,15 +86,19 @@ Now it's time for you to try and complete the following tasks:
 In order to perform the following you first have to setup and configure a local hadoop client on your machine. Instructions on how to do that are beyond the scope of this document. However, if you are in a Linux machine and you already have Java installed, you can use the following:
 
 ```
-cp -r ~/projects/bigdata-docker-infra/hdfs/hadoop-3.2.0 /tmp
-export HADOOP_OPTS=-Djava.library.path=/tmp/hadoop-3.2.0/lib/native
-export HADOOP_INSTALL=/tmp/projects/hadoop-3.2.0
-export HADOOP_MAPRED_HOME=/tmp/hadoop-3.2.0
-export HADOOP_COMMON_HOME=/tmp/hadoop-3.2.0
-export HADOOP_HOME=/tmp/hadoop-3.2.0
-export HADOOP_HDFS_HOME=/tmp/hadoop-3.2.0
-export HADOOP_COMMON_LIB_NATIVE_DIR=/tmp/hadoop-3.2.0/lib/native
-export PATH=/tmp/hadoop-3.2.0/sbin:/tmp/hadoop-3.2.0/bin:$PATH
+export JAVA_HOME=/usr/lib/jvm/java-14-openjdk-amd64
+
+export tmp=/tmp
+cp -r ~/bigdata/bigdata-docker-infra/hdfs/hadoop-3.2.0 $tmp
+
+export HADOOP_OPTS=-Djava.library.path=$tmp/hadoop-3.2.0/lib/native
+export HADOOP_INSTALL=$tmp/projects/hadoop-3.2.0
+export HADOOP_MAPRED_HOME=$tmp/hadoop-3.2.0
+export HADOOP_COMMON_HOME=$tmp/hadoop-3.2.0
+export HADOOP_HOME=$tmp/hadoop-3.2.0
+export HADOOP_HDFS_HOME=$tmp/hadoop-3.2.0
+export HADOOP_COMMON_LIB_NATIVE_DIR=$tmp/hadoop-3.2.0/lib/native
+export PATH=$tmp/hadoop-3.2.0/sbin:$tmp/hadoop-3.2.0/bin:$PATH
 ```
 
 ---
