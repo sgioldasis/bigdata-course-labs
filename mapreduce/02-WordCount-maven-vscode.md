@@ -1,6 +1,6 @@
-# Hadoop program with Maven on VS Code
+# MapReduce example with Docker and VS Code
 
-In this tutorial we will understand a way you can write and test your Hadoop Program with Maven on VS Code without installing anything (but git and docker) on your own machine.
+In this tutorial you will explore a way you can write and test a WordCount MapReduce program and then build it with Maven on VS Code without installing anything (but git and docker) on your own machine. You will also find out how you can run this program on a Hadoop cluster.
 
 Before you run the lab make sure you have cloned the following Git repositories. 
 
