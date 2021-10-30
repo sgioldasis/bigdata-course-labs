@@ -266,31 +266,34 @@ deleteall '<table name>', '<row>'
 
 
 
-## Exit the HBase shell
+## Cleanup
 
-Exit the hbase shell:
-    
-```
-exit
-```
+To cleanup type the following:
 
-Exit the hbase container:
-    
-```
-exit
-```
 
-Shutdown all containers:
+- Exit the hbase shell:
+        
+    ```
+    exit
+    ```
 
-```
-docker-compose -f docker-compose-standalone.yml down
-```
+- Exit the hbase container:
+        
+    ```
+    exit
+    ```
 
-Verify
+- Shutdown all containers:
 
-```
-docker-compose -f docker-compose-standalone.yml ps
-```
+    ```
+    docker-compose -f docker-compose-standalone.yml down
+    ```
+
+- Verify
+
+    ```
+    docker-compose -f docker-compose-standalone.yml ps
+    ```
 
 
 
