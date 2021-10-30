@@ -290,13 +290,21 @@ To cleanup type the following:
 - Shutdown all containers:
 
     ```
+    # Standalone:
     docker-compose -f docker-compose-standalone.yml down
+
+    # Local distributed:
+    docker-compose -f docker-compose-distributed-local.yml down
     ```
 
 - Verify
 
     ```
+    # Standalone:
     docker-compose -f docker-compose-standalone.yml ps
+
+    # Local distributed:
+    docker-compose -f docker-compose-distributed-local.yml ps
     ```
 
 
