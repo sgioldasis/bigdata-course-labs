@@ -1,8 +1,29 @@
 # HBase Docker Lab
+
+## Prerequisites
+
+Before you run the lab make sure you have cloned the following Git repositories. 
+
+- [Bigdata Docker Infrastructure](https://github.com/sgioldasis/bigdata-docker-infra)
+- [Bigdata Course Labs](https://github.com/sgioldasis/bigdata-course-labs)
+
+If you don't have git you can click the above links, click on the green `Code` button and choose `Download ZIP`. You then need to unzip into your home folder (`~`). 
+
+Alternatively, if you have `git` installed you can just open a terminal and run the following:
+```
+cd ~
+git clone https://github.com/sgioldasis/bigdata-docker-infra.git
+git clone https://github.com/sgioldasis/bigdata-course-labs.git
+```
+
+> NOTE: If you cloned into a different folder than your home folder then you have to adjust the commands below replacing `~` with the path to the folder you have chosen.
+
+## Startup
+
 Before you run the lab make sure HBase is running. To do that open a terminal and run the following:
 
 ```
-cd ~/projects/bigdata-docker-infra/hbase
+cd ~/bigdata-docker-infra/hbase
 ```
 
 You can now run HBase either in standalone or local distributed mode:

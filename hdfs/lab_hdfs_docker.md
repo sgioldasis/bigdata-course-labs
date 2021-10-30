@@ -1,8 +1,29 @@
 # HDFS Docker Lab
+
+## Prerequisites
+
+Before you run the lab make sure you have cloned the following Git repositories. 
+
+- [Bigdata Docker Infrastructure](https://github.com/sgioldasis/bigdata-docker-infra)
+- [Bigdata Course Labs](https://github.com/sgioldasis/bigdata-course-labs)
+
+If you don't have git you can click the above links, click on the green `Code` button and choose `Download ZIP`. You then need to unzip into your home folder (`~`). 
+
+Alternatively, if you have `git` installed you can just open a terminal and run the following:
+```
+cd ~
+git clone https://github.com/sgioldasis/bigdata-docker-infra.git
+git clone https://github.com/sgioldasis/bigdata-course-labs.git
+```
+
+> NOTE: If you cloned into a different folder than your home folder then you have to adjust the commands below replacing `~` with the path to the folder you have chosen.
+
+## Startup
+
 Before you run the lab make sure HDFS is running. To do that open a terminal and run the following:
 
 ```
-cd ~/projects/bigdata-docker-infra/hdfs/docker-hadoop-cluster
+cd ~/bigdata-docker-infra/hdfs/docker-hadoop-cluster
 docker-compose up -d
 ```
 
@@ -89,7 +110,7 @@ In order to perform the following you first have to setup and configure a local 
 export JAVA_HOME=/usr/lib/jvm/java-14-openjdk-amd64
 
 export tmp=/tmp
-cp -r ~/bigdata/bigdata-docker-infra/hdfs/hadoop-3.2.0 $tmp
+cp -r ~/bigdata-docker-infra/hdfs/hadoop-3.2.0 $tmp
 
 export HADOOP_OPTS=-Djava.library.path=$tmp/hadoop-3.2.0/lib/native
 export HADOOP_INSTALL=$tmp/projects/hadoop-3.2.0
@@ -105,7 +126,7 @@ export PATH=$tmp/hadoop-3.2.0/sbin:$tmp/hadoop-3.2.0/bin:$PATH
 
 - Start a second HDFS cluster using the following commands:
 ```
-cd ~/projects/bigdata-docker-infra/hdfs/docker-hadoop-cluster-2
+cd ~/bigdata-docker-infra/hdfs/docker-hadoop-cluster-2
 docker-compose up -d
 ```
 
