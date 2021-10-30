@@ -89,9 +89,7 @@ Inside the hbase shell you can run the following commands:
 
 You can create a table using the create command. Here you must specify the table name and the Column Family name. The syntax to create a table in HBase shell is shown below.
 
-```
-create ‘<table name>’,’<column family>’ 
-```
+> `create '<table name>','<column family>'`
 
 - Create the `emp` table
     ```
@@ -112,7 +110,7 @@ To delete a table or change its settings, you need to first disable the table us
     disable 'emp'
     ```
 
-> NOTE:  After disabling the table, you can still sense its existence through list and exists commands. You cannot scan it. If you try: `scan 'emp'` it will give you the following: `ERROR: emp is disabled.`
+> NOTE:  After disabling the table, you can still sense its existence through list and exists commands but you cannot scan it. If you try: `scan 'emp'` it will give you the following error: `ERROR: emp is disabled.`
 
 
 - You can also check whether a table is disabled:
@@ -177,7 +175,7 @@ To delete a table or change its settings, you need to first disable the table us
 Using the `put` command, you can insert rows into a table. Its syntax is as follows:
 
 
-`put '<table name>', 'row1','<colfamily:colname>', '<value>'`
+> `put '<table name>', 'row1','<colfamily:colname>', '<value>'`
 
 
 - Insert the first row values into the emp table:
@@ -226,7 +224,7 @@ You can also update the table using the `put` command above. Try it:
 
 We already saw examples of the `scan` command. Using the `get` command, you can get a single row of data at a time. Its syntax is as follows:
 
-`get '<table name>', 'row1'`
+> `get '<table name>', 'row1'`
 
 - Read the row for employee 1:
 
@@ -236,9 +234,7 @@ We already saw examples of the `scan` command. Using the `get` command, you can 
 
 Below is the syntax to read a specific column using the get method:
 
-```
-get 'table name', 'rowid', {COLUMN ⇒ 'column family:column name'}
-```
+> `get 'table name', 'rowid', {COLUMN ⇒ 'column family:column name'}`
 
 - Read the name of employee 1:
 
@@ -250,7 +246,7 @@ get 'table name', 'rowid', {COLUMN ⇒ 'column family:column name'}
 
 Using the delete command, you can delete a specific cell in a table. The syntax of delete command is as follows:
 
-`delete '<table name>', '<row>', '<column name>', '<time stamp>'`
+> `delete '<table name>', '<row>', '<column name>', '<time stamp>'`
 
 
 - Read the city of employee 1:
@@ -261,7 +257,7 @@ Using the delete command, you can delete a specific cell in a table. The syntax 
 
 Using the `deleteall` command, you can delete all the cells in a row. Given below is the syntax of `deleteall` command:
 
-`deleteall '<table name>', '<row>'`
+> `deleteall '<table name>', '<row>'`
 
 - Delete employee 1:
 
