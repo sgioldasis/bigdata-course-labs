@@ -26,7 +26,11 @@ This deployment will start Zookeeper, HMaster and HRegionserver in separate cont
 After that, you need to connect to the running `hbase` container in order to get a terminal. 
 
 ```
+# Standalone:
 docker exec -it hbase bash
+
+# Local distributed:
+docker exec -it hbase-master bash
 ```
 
 Inside the hbase container you can start an hbase shell:
