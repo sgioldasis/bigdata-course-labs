@@ -112,24 +112,16 @@ To delete a table or change its settings, you need to first disable the table us
     disable 'emp'
     ```
 
-`NOTE:`  After disabling the table, you can still sense its existence through list and exists commands. You cannot scan it. If you try:
-
-    ```
-    scan 'emp'
-    ```
-
-it will give you the following:
-
-`ERROR: emp is disabled.`
+> NOTE:  After disabling the table, you can still sense its existence through list and exists commands. You cannot scan it. If you try: `scan 'emp'` it will give you the following: `ERROR: emp is disabled.`
 
 
-You can also check whether a table is disabled:
+- You can also check whether a table is disabled:
 
     ```
     is_disabled 'emp'
     ```
 
-Finally, you can re-enable the table:
+- Finally, you can re-enable the table:
 
     ```
     enable 'emp'
