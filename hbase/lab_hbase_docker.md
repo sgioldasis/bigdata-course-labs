@@ -176,9 +176,9 @@ To delete a table or change its settings, you need to first disable the table us
 
 Using the `put` command, you can insert rows into a table. Its syntax is as follows:
 
-```
-put '<table name>', 'row1','<colfamily:colname>', '<value>'
-```
+
+`put '<table name>', 'row1','<colfamily:colname>', '<value>'`
+
 
 - Insert the first row values into the emp table:
 
@@ -226,9 +226,7 @@ You can also update the table using the `put` command above. Try it:
 
 We already saw examples of the `scan` command. Using the `get` command, you can get a single row of data at a time. Its syntax is as follows:
 
-```
-get '<table name>', 'row1'
-```
+`get '<table name>', 'row1'`
 
 - Read the row for employee 1:
 
@@ -252,9 +250,7 @@ get 'table name', 'rowid', {COLUMN ⇒ 'column family:column name'}
 
 Using the delete command, you can delete a specific cell in a table. The syntax of delete command is as follows:
 
-```
-delete '<table name>', '<row>', '<column name>', '<time stamp>'
-```
+`delete '<table name>', '<row>', '<column name>', '<time stamp>'`
 
 
 - Read the city of employee 1:
@@ -265,9 +261,7 @@ delete '<table name>', '<row>', '<column name>', '<time stamp>'
 
 Using the `deleteall` command, you can delete all the cells in a row. Given below is the syntax of `deleteall` command:
 
-```
-deleteall '<table name>', '<row>'
-```
+`deleteall '<table name>', '<row>'`
 
 - Delete employee 1:
 
