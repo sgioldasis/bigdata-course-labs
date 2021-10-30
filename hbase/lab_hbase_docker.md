@@ -2,133 +2,295 @@
 Before you run the lab make sure HBase is running. To do that open a terminal and run the following:
 
 ```
-cd ~/projects/bigdata-docker-infra/hdfs/docker-hadoop-cluster
-docker-compose up -d
+cd ~/projects/bigdata-docker-infra/hbase
 ```
 
-After that, you need to connect to the running `master` container in order to get a terminal:
+You can now run HBase either in standalone or local distributed mode:
+
+### Standalone
+To run standalone HBase:
+```
+docker-compose -f docker-compose-standalone.yml up -d
+```
+The deployment is the same as in [quickstart HBase documentation](https://hbase.apache.org/book.html#qu>).
+It can be used for testing/development, connected to Hadoop cluster.
+
+### Local distributed
+To run local distributed HBase:
+```
+docker-compose -f docker-compose-distributed-local.yml up -d
+```
+
+This deployment will start Zookeeper, HMaster and HRegionserver in separate containers.
+
+After that, you need to connect to the running `hbase` container in order to get a terminal. 
 
 ```
-docker exec -it master bash
+docker exec -it hbase bash
 ```
 
-Then you can run the commands for each task described below in your terminal.
-
-- Download the file `bank.csv` in local filesystem. 
+Inside the hbase container you can start an hbase shell:
     
-    ```
-    curl "https://s3.amazonaws.com/apache-zeppelin/tutorial/bank/bank.csv" -o "bank.csv"
-    ```
-
-- List the hdfs root folder
-    ```
-    hdfs dfs -ls /
-    ```
-
-- Create a data folder under root folder
-    ```
-    hdfs dfs -mkdir /data
-    ```
-
-- Copy the file `bank.csv` from the local file system to HDFS
-    ```
-    hdfs dfs -put bank.csv /data
-    ```
-
-- Show the disk usage of the hdfs `data` folder
-    ```
-    hdfs dfs -du /data
-    hdfs dfs -du -s /data
-    ```
-
-- Print statistics about the file `bank.csv` in the HDFS folder `data`
-    ```
-    hdfs dfs -stat "type:%F perm:%a %u:%g size:%b mtime:%y atime:%x name:%n" /data/bank.csv
-    ```
-
-- Use fsck command for the file `bank.csv` in the hdfs `data` folder show files, blocks locations
-    ```
-    hdfs fsck /data/bank.csv -files -blocks -locations
-    ```
-
-- Show the first few lines of the file `bank.csv` in the hdfs `data` folder
-    ```
-    hdfs dfs -head /data/bank.csv
-    ```
-
-- Count the lines of the file `bank.csv` in the hdfs `data` folder
-    ```
-    hdfs dfs -cat /data/bank.csv | wc -l
-    ```
-
-- List the metadata for the file `bank.csv` in the hdfs `data` folder
-    ```
-    hdfs dfs -ls /data/bank.csv
-    hdfs dfs -ls hdfs://master:9000/data/bank.csv
-    ```
-
-- Change the replication factor for the file `bank.csv` in the hdfs `data` folder
-    ```
-    hdfs dfs -setrep 2 /data/bank.csv
-    hdfs fsck /data/bank.csv -files -blocks -locations
-    ```
-
-Now it's time for you to try and complete the following tasks:
-
-- Checkout http://localhost:9870/ and try to find the file `bank.csv`
-- Find on which datanodes it is available.
-- Kill one of the datanodes using `docker kill` command. 
-- Check if the file is still available
-
----
-**OPTIONAL:**
-
-In order to perform the following you first have to setup and configure a local hadoop client on your machine. Instructions on how to do that are beyond the scope of this document. However, if you are in a Linux machine and you already have Java installed, you can use the following:
-
 ```
-export JAVA_HOME=/usr/lib/jvm/java-14-openjdk-amd64
-
-export tmp=/tmp
-cp -r ~/bigdata/bigdata-docker-infra/hdfs/hadoop-3.2.0 $tmp
-
-export HADOOP_OPTS=-Djava.library.path=$tmp/hadoop-3.2.0/lib/native
-export HADOOP_INSTALL=$tmp/projects/hadoop-3.2.0
-export HADOOP_MAPRED_HOME=$tmp/hadoop-3.2.0
-export HADOOP_COMMON_HOME=$tmp/hadoop-3.2.0
-export HADOOP_HOME=$tmp/hadoop-3.2.0
-export HADOOP_HDFS_HOME=$tmp/hadoop-3.2.0
-export HADOOP_COMMON_LIB_NATIVE_DIR=$tmp/hadoop-3.2.0/lib/native
-export PATH=$tmp/hadoop-3.2.0/sbin:$tmp/hadoop-3.2.0/bin:$PATH
+hbase shell
 ```
 
----
+Inside the hbase shell you can run the following commands:
 
-- Start a second HDFS cluster using the following commands:
+## General Commands
+
+- Show the status of the system including the details of the servers running on the system.
+
+    ```
+    status
+    ```
+
+- Show the version of HBase used in your system.
+    ```
+    version
+    ```
+
+- Show a guide on how to use table-referenced commands
+    ```
+    table_help
+    ```
+
+- Show the current HBase user
+    ```
+    whoami
+    ```
+
+## Creating a Table
+
+You can create a table using the create command. Here you must specify the table name and the Column Family name. The syntax to create a table in HBase shell is shown below.
+
 ```
-cd ~/projects/bigdata-docker-infra/hdfs/docker-hadoop-cluster-2
-docker-compose up -d
+create ‘<table name>’,’<column family>’ 
 ```
 
-- List the files in cluster-1
+- Create the `emp` table
+    ```
+    create 'emp', 'personal data', 'professional data'
+    ```
+
+- List the existing tables
+    ```
+    list
+    ```
+
+## Enabling/Disabling a Table
+
+To delete a table or change its settings, you need to first disable the table using the disable command. You can re-enable it using the enable command.
+
+- Disable the `emp` table
+    ```
+    disable 'emp'
+    ```
+
+`NOTE:`  After disabling the table, you can still sense its existence through list and exists commands. You cannot scan it. If you try:
+
+    ```
+    scan 'emp'
+    ```
+
+it will give you the following:
+
+`ERROR: emp is disabled.`
+
+
+You can also check whether a table is disabled:
+
+    ```
+    is_disabled 'emp'
+    ```
+
+Finally, you can re-enable the table:
+
+    ```
+    enable 'emp'
+    ```
+
+## Manipulating a Table
+
+- Show the description of the `emp` table
+
+    ```
+    describe 'emp'
+    ```
+
+- Change the maximum number of cells of a column family:
+
+    ```
+    alter 'emp', NAME => 'personal data', VERSIONS => 5
+    ```
+
+- Add a column family:
+
+    ```
+    alter 'emp', 'newcf'
+    ```
+
+- Delete a column family:
+
+    ```
+    alter 'emp', 'delete' => 'newcf'
+    ```
+
+- Verify the existence of a table:
+
+    ```
+    exists 'emp'
+    ```
+
+- Delete/Drop a table (before dropping a table, you have to disable it)
+
+    ```
+    disable 'emp'
+    drop 'emp'
+    ```
+
+- Disable, drop and recreate a table (truncate)
+
+    ```
+    truncate 'emp'
+    ```
+
+## Inserting Data
+
+Using the `put` command, you can insert rows into a table. Its syntax is as follows:
+
 ```
-hdfs dfs -ls hdfs://localhost:9000/
+put '<table name>', 'row1','<colfamily:colname>', '<value>'
 ```
 
-- List the files in cluster-2
+- Insert the first row values into the emp table:
+
+    ```
+    put 'emp','1','personal data:name','Savas'
+    put 'emp','1','personal data:city','Athens'
+    put 'emp','1','professional data:designation','manager'
+    put 'emp','1','professional data:salary','50000'
+
+    put 'emp','2','personal data:name','George'
+    put 'emp','2','personal data:city','Thessaloniki'
+    put 'emp','2','professional data:designation','team lead'
+    put 'emp','2','professional data:salary','40000'
+
+    put 'emp','3','personal data:name','Nick'
+    put 'emp','3','personal data:city','Patra'
+    put 'emp','3','professional data:designation','junior developer'
+    put 'emp','3','professional data:salary','30000'
+
+    ```
+
+- Verify the data was inserted:
+
+    ```
+    scan 'emp'
+    ```
+
+## Updating Data
+
+You can also update the table using the `put` command above. Try it:
+
+- Update the salary for employee 1:
+
+    ```
+    put 'emp','1','professional data:salary','60000'
+    ```
+
+- Verify the data was updated:
+
+    ```
+    scan 'emp'
+    ```
+
+## Reading data
+
+We already saw examples of the `scan` command. Using the `get` command, you can get a single row of data at a time. Its syntax is as follows:
+
 ```
-hdfs dfs -ls hdfs://localhost:9001/
+get '<table name>', 'row1'
 ```
 
-- Copy the folder `data` from cluster-1 to cluster-2
+- Read the row for employee 1:
+
+    ```
+    get 'emp', '1'
+    ```
+
+Below is the syntax to read a specific column using the get method:
+
 ```
-hadoop distcp hdfs://localhost:9000/data hdfs://localhost:9001/
+get 'table name', 'rowid', {COLUMN ⇒ 'column family:column name'}
 ```
 
-- Remove the folder `data` from cluster-2
+- Read the name of employee 1:
+
+    ```
+    get 'emp', '1', {COLUMN => 'personal data:name'}
+    ```
+
+## Deleting a Specific Cell in a Table
+
+Using the delete command, you can delete a specific cell in a table. The syntax of delete command is as follows:
+
 ```
-hadoop fs -rm -r hdfs://localhost:9001/data
+delete '<table name>', '<row>', '<column name>', '<time stamp>'
 ```
 
-- Run the examples in the second HDFS cluster using your local HDFS client
+
+- Read the city of employee 1:
+
+    ```
+    delete 'emp', '1', 'personal data:city'
+    ```
+
+Using the `deleteall` command, you can delete all the cells in a row. Given below is the syntax of `deleteall` command:
+
+```
+deleteall '<table name>', '<row>'
+```
+
+- Delete employee 1:
+
+    ```
+    deleteall 'emp', '1'
+    ```
+
+- Verify by counting the number of rows after the operation:
+
+    ```
+    count 'emp'
+    ```
+
+
+
+## Exit the HBase shell
+
+Exit the hbase shell:
+    
+```
+exit
+```
+
+Exit the hbase container:
+    
+```
+exit
+```
+
+Shutdown all containers:
+
+```
+docker-compose -f docker-compose-standalone.yml down
+```
+
+Verify
+
+```
+docker-compose -f docker-compose-standalone.yml ps
+```
+
 
 
