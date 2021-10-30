@@ -1,4 +1,4 @@
-# MapReduce example with Docker and VS Code
+# MapReduce with Docker and VS Code
 
 In this tutorial you will explore a way you can write and test a WordCount MapReduce program and then build it with Maven on VS Code without installing anything (but git and docker) on your own machine. You will also find out how you can run this program on a Hadoop cluster.
 
