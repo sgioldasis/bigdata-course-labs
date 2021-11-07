@@ -86,6 +86,7 @@ and `drivers.csv`.
 To upload the data files to HDFS issue the following commands on your terminal:
 
 ```
+hdfs dfs -mkdir /pig_data
 hdfs dfs -put truck_event_text_partition.csv /pig_data
 hdfs dfs -put drivers.csv /pig_data
 ```
