@@ -148,14 +148,12 @@ cd driver_data
 ls
 ```
 
-We will be uploading two csv files - `truck_event_text_partition.csv`
-and `drivers.csv`.
-
 ## [Upload the data files](#upload-the-data-files)
 
 To upload the data files to HDFS issue the following commands on your terminal:
 
 ```
+hdfs dfs -rm -r /pig_data
 hdfs dfs -mkdir /pig_data
 hdfs dfs -put *.csv /pig_data
 ```
