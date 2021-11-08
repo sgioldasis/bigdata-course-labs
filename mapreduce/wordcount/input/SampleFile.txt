@@ -1,2 +1,3 @@
-w1 w2
-w2 w3
+Hadoop is cool
+Hadoop is distibuted
+Hadoop is fun
