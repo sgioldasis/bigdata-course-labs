@@ -20,41 +20,58 @@ git clone https://github.com/sgioldasis/bigdata-course-labs.git
 
 ## Startup
 
-Before you run the lab make sure HBase is running. To do that open a terminal and run the following:
+Before you run the lab make sure the infrastructure is running. To do that open a terminal and run the following:
 
 ```
-cd ~/bigdata-docker-infra/hbase
+cd ~/bigdata-docker-infra/demo
+./run-all-services.sh
 ```
 
-You can now run HBase either in standalone or local distributed mode:
+## Enable Web HDFS download to localhost
 
-### Standalone
-To run standalone HBase:
-```
-docker-compose -f docker-compose-standalone.yml up -d
-```
-The deployment is the same as in [quickstart HBase documentation](https://hbase.apache.org/book.html#qu>).
-It can be used for testing/development, connected to Hadoop cluster.
-
-### Local distributed
-To run local distributed HBase:
-```
-docker-compose -f docker-compose-distributed-local.yml up -d
-```
-
-This deployment will start Zookeeper, HMaster and HRegionserver in separate containers.
-
-After that, you need to connect to the running `hbase` container in order to get a terminal. 
+In order to enable Web HDFS download to localhost, you need to perform some extra steps. Open a new terminal and type:
 
 ```
-# Standalone:
-docker exec -it hbase bash
+docker inspect datanode | grep -E '("IPAddress"|"Hostname")' 
+```
 
-# Local distributed:
+This will give you the `Hostname` and `IPAddress` of the datanode container. For example:
+
+```
+"Hostname": "5f35cd4f78be",
+            "IPAddress": "",
+                    "IPAddress": "172.19.0.5",
+
+```
+
+You then need to edit the file `/etc/hosts`:
+
+```
+sudo nano /etc/hosts
+```
+
+Add one line containing the `Hostname` and `IPAddress` you found above:
+
+```
+172.19.0.5 5f35cd4f78be
+```
+
+Save the file and you are ready to go.
+
+
+## Get a prompt inside the container
+
+Now, you need to connect to the running `hbase-master` container. Type the following in your terminal:
+
+```
 docker exec -it hbase-master bash
 ```
 
-Inside the hbase container you can start an hbase shell:
+You will notice the command prompt will change (eg. `root@60280d2557bf:/opt#`). Now you can run the commands for each task described below.
+
+# How to Process Data with Apache HBase
+
+Inside the `hbase-master` container you can start an hbase shell:
     
 ```
 hbase shell
