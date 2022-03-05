@@ -9,8 +9,7 @@ management and event stream processing using ksqlDB.
 
 In this quick start, you create Apache Kafka® topics, use the terminal
 to generate mock data to those topics, and create ksqlDB streaming
-queries on those topics. You then go to Control Center to monitor and
-analyze the streaming queries.
+queries on those topics.
 
 ## Step 1: Start Confluent Platform
 
