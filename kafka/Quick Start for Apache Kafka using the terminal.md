@@ -251,7 +251,9 @@ Press CTRL-C to interrupt
 
 ### Stream/Table duality
 
-In this step, we will show the difference between stream and table - but note that it's the _same_ Kafka topic underneath. First stop the query running in `[Window 2]` (CTRL-C). Now create a `TABLE` by typing:
+In this step, we will show the difference between stream and table - but note that it's the _same_ Kafka topic underneath. You can find a great primer of Streams and Tables in Apache Kafka [here](https://www.confluent.io/blog/kafka-streams-tables-part-1-event-streaming/).
+
+First stop the query running in `[Window 2]` (CTRL-C). Now create a `TABLE` by typing:
 
 ```sql
 CREATE TABLE MOVEMENTS_T (PERSON VARCHAR PRIMARY KEY, LOCATION VARCHAR)
